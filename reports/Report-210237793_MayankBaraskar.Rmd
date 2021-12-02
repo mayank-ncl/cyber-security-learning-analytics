@@ -43,7 +43,27 @@ knitr::include_graphics(here::here("image", "CRISP-DM_Process_Diagram.png"))
 - **Data understanding**: Understanding the data is the second phase in the CRISP DM process. The major goal of this stage is to identify, collect, and evaluate the data set that FutureLearn has provided to us. R was used to load the entire data set into Project Template. After the data was loaded, it was evaluated to determine the data format, number of records, and noise level in order to clean the data further. In this step, visuals for learning metrics were created, which FutureLearn can use to optimise the course process.  
 - **Data Preparation**: The preparation of data is the third process. Data munging is another name for it. The final data set for the visualisation challenge was prepared in this stage. Unnecessary data was removed from the whole data set. The chosen data was cleaned and assembled according to the specifications. Because the data was split into numerous files, it was combined, and joins were employed in some cases. The data was also formatted, with string numbers being converted to numeric values for mathematical calculations.
 - **Modelling and Evaluation**: Machine learning and statistics are mostly involved in this step. The first phase in the modelling process is to choose methodologies, which might include algorithms such as regression, classification, and others. The model is fitted to the data in order to produce precise predictions. The accuracy is calculated at the evaluation step, which divides the entire data set into training and test sets. The model will be installed into a training set and put through its paces on a test set. The decision can be made if these models met the business criteria via evaluation. However, because the focus of this study is on data analysis, neither of these stages will be included.
-- **Deployement**: The report, which comprises the data analysis and the final presentation for the outcome, is prepared during the deployment step.(CRISP-DM - Data Science Process Alliance, 2021)
+- **Deployement**: The report, which comprises the data analysis and the final presentation for the outcome, is prepared during the deployment step.(CRISP-DM - Data Science Process Alliance, 2021)  
+  
+
+# Data Description
+Learners who enrolled in FutureLearn's cyber security course had their data utilised. Because there was insufficient data for analysis for the previous year, the data for the year 2018 was used, with three different intakes in the months of February, June, and September. Multiple variables were used for data analysis, and they are listed in the table below with descriptions. This definition can be used as a reference throughout the report because these attributes were employed throughout the research. This table can also show which data attributes were accessible and how they were used for analysis. The data properties included in the table are a comprehensive list; nonetheless, they are used in various data frames.
+  
+
+|Sr No. | Attribute Name | Description |
+| ----| -------------- | ---------------------------- |
+| 1 | learner_id     | Unique ID which is alloted to learner at time of enrollment |
+| 2 | enrolled_at     | Timestamp of when the student is enrolled |
+| 3 | fully_participated_at     | Timestamp for when the learner completed the course |
+| 4 | left_at     | Timestamp for when the learner left the course |
+| 5 | leaving_reason     | Reason for learner leaving the course |
+| 6 | last_completed_step_at     | Timestamp for when the learner completed the last step |
+| 7 | fully_participated_at     | Timestamp for when the learner completed the course |
+| 8 | last_completed_step     | Last completed step number |
+| 9 | last_completed_step_week_no     | The week number when learner completed the last step |
+|10 | last_completed_step_no     | The step number when learner completed the last step |
+
+
 
 
 
