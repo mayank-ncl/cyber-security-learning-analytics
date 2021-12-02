@@ -6,7 +6,7 @@ output: pdf_document
 student_id: 210237793
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir= normalizePath('..'))
 ```
@@ -63,6 +63,21 @@ Learners who enrolled in FutureLearn's cyber security course had their data util
 | 9 | last_completed_step_week_no     | The week number when learner completed the last step |
 |10 | last_completed_step_no     | The step number when learner completed the last step |
 
+
+# Analysis  
+
+As two business objectives have been specified in this article, there are two CRISP-DM cycles. The steps of CRISP-DM have been followed and discussed separately for each business aim.
+\newline
+\newline
+**Business Objective 1 - An analysis of when the majority of learners drop out of the course.**  
+\newline
+There are numerous topics that will be explored in this business purpose. The main goal is to figure out when the majority of students abandon the course halfway through. Despite the fact that MOOCs are flexible, allowing students to play content or complete course work whenever they choose, unlike traditional classrooms, students can opt to leave or unenroll from the course.
+\newline
+The procedure was advanced to the second level of Data understanding because our business aim for this cycle has been sorted. The data came from FutureLearn's records, which covered seven runs with various input and years. The procedure was advanced to the second level of Data understanding because our business aim for this cycle has been sorted. The data came from records provided by FutureLearn, which covered seven separate runs with different input and years. Students' enrollment, archetype survey responses, quiz responses, step activity, weekly attitude survey responses, leaving survey responses, video statistics, and team members were all part of the data for each intake. Because the goal of this business is to figure out when students choose to drop out, the focus is on enrollment data and survey responses. Unfortunately, there was no data from previous intakes for the departing survey, but there were responses for the year 2018, thus this analysis will be done on three separate intakes from that year to gain a better understanding and learn learners behavioural patterns. The raw data of enrollments and survey responses was in the following format after collecting the data for 2018:
+
+```{r test}
+summary(data_csv[[1]])
+```
 
 
 
