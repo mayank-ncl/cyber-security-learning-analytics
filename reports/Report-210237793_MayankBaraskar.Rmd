@@ -15,7 +15,7 @@ knitr::opts_knit$set(root.dir= normalizePath('..'))
 library(ProjectTemplate)
 options(repos="https://cran.rstudio.com" )
 load.project()
-source("src/B01Analysis.R")
+source("src/Analysis.R")
 ```
 
 # Abstract
@@ -158,7 +158,10 @@ knitr::include_graphics(here::here("graphs", "stepwise_completed_ratio.png"))
 After looking at the graph, it's clear that the majority of students are leaving at step 3.20, which is the last item that deals with the course's conclusion. As a result, it's possible that a significant percentage of students completed the course but departed early to submit the survey rather than waiting until the end of the course, implying that they actually digested the course, which appears to be a positive indicator. However, the second biggest number of students abandoning the course is found in the penultimate step of week 1, which is part of the rounding up of the course given in week 1. It appears that the student tried the course for the first week but decided to drop out since they didn't like it or didn't find the curriculum relevant. There are also a large number of students who dropped out right after the first step, which is to say, "Welcome to the course session." They abandoned the course because they were either dissatisfied with the course or wasn't what the learners expected when they went through this session. There could be a variety of reasons for leaving, but the most typical interpretation appears to be that they completed the course for week 1, which served as a trial, but were unable to continue owing to some cause.
 
 \newpage
-**Business Objective 2 - An analysis of why the majority of students left the course.**  
+**Business Objective 2 - An analysis of why the majority of students left the course.**  
+
+When the majority of students abandon the course halfway through the preceding business objective and cycle of CRISP-DM, the explanatory data analysis was finished and the conclusion was formed. In addition, data analysis based on learner patterns revealed the most likely reasons. The goal of this objective is to figure out what the main reasons are for students dropping out of classes. It can assist professors and course administrators in improving course work and processes in order to promote student engagement and enrollment.
+
 
 \newpage
 
