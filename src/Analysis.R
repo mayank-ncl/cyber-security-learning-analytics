@@ -187,7 +187,7 @@ ggplot(all_month_leave_reason_ratio, aes(x = "", y = perc, fill = leaving_reason
   guides(fill = guide_legend(title = "Leaving Reason")) +
   scale_fill_brewer(palette="Spectral")
 
-ggsave(file.path("graphs", "leaving_reason_pie.png"))
+ggsave(file.path("graphs", "leaving_reason_pie.png"), width=7)
 
 
 
