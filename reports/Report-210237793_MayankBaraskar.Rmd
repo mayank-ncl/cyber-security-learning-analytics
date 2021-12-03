@@ -1,7 +1,6 @@
 ---
 title: "Analysis on Cyber Security Learning course"
 author: "Mayank Baraskar"
-date: "26/11/2021"
 output: pdf_document
 student_id: 210237793
 ---
@@ -16,6 +15,7 @@ knitr::opts_knit$set(root.dir= normalizePath('..'))
 library(ProjectTemplate)
 options(repos="https://cran.rstudio.com" )
 load.project()
+source("src/B01Analysis.R")
 ```
 
 # Abstract
@@ -75,15 +75,57 @@ There are numerous topics that will be explored in this business purpose. The ma
 \newline
 The procedure was advanced to the second level of Data understanding because our business aim for this cycle has been sorted. The data came from FutureLearn's records, which covered seven runs with various input and years. The procedure was advanced to the second level of Data understanding because our business aim for this cycle has been sorted. The data came from records provided by FutureLearn, which covered seven separate runs with different input and years. Students' enrollment, archetype survey responses, quiz responses, step activity, weekly attitude survey responses, leaving survey responses, video statistics, and team members were all part of the data for each intake. Because the goal of this business is to figure out when students choose to drop out, the focus is on enrollment data and survey responses. Unfortunately, there was no data from previous intakes for the departing survey, but there were responses for the year 2018, thus this analysis will be done on three separate intakes from that year to gain a better understanding and learn learners behavioural patterns. The raw data of enrollments and survey responses was in the following format after collecting the data for 2018:
 
-```{r test}
-summary(data_csv[[1]])
+**Enrollment Data**
+
+```{r head of enrollment data}
+head(feb_2018_enrollments, 4)
 ```
 
+There are 3544 observations of 13 variables in the enrollments data, as can be seen. For this data, the variables were cleaned and prepared as follows.  
+  
+- **learner_id**: Because there are no null values in this variable, no cleaning or inclusion/exclusion was performed.
+- **enrolled_at**: Because the values are timestamps of when the student enrolled and there are no NA or null values, no cleaning or inclusion/exclusion was necessary.
+- **unenrolled_at**: Because the data will be left joined with the survey response which has left_at attribute, and unenrolled at variables appears to be inconsistent, this column was removed.
+- **role**:  Because the focus of this variable is on learner role rather than organisation admin, the data was filtered for role admin.
+- **fully_participated_at**: This variable is needed to figure out what the completion rate was, so it will be included. However, there are NA values that can be assumed to mean that the learner did not complete the course, and if the value has a timestamp, the learner completed the course. This variable is transformed into a categorical variable with the categories "Completed" and "Not Completed."  
+There are some variables that aren't needed because they're not part of our analysis for the business goal, so they've been left out. Due to unknown values and NA values, the data was also very inconsistent. They are *purchased_statement_at*, *gender*, *country*, *age_range*, *highest_education_level*, *employment_status*, *employment_area*, *detected_country*
 
+After transforming and cleaning enrollment data, the subset looks like:
+```{r head of enrollment data- filtered}
+head(feb_2018_enrollments_final, 4)
+```
 
+**Leaving Survey Response Data**
+
+```{r head of leaving survey response data}
+head(feb_2018_leaving_survey, 4)
+```
+
+There are 173 observations of 8 variables in the enrollments data, as can be seen. For this data, the variables were cleaned and prepared as follows.  
+
+- **id**: This variable is for storing unique ID while recording leaving survey, however this will be excluded from the filtered data
+- **response_id**: Because there are no null values in this variable, no cleaning or inclusion/exclusion was performed. However, this variable was used for joining enrollment and leaving survey response data
+- **left at**: Because the values are timestamps of when the student left the course and there are no NA or null values, no cleaning or inclusion/exclusion was necessary.
+- **leaving reason**: This variable contains the reasons for the learner's withdrawal from the course. For the purposes of accurate analysis, we will omit the complete record for some NA values. Furthermore, when the reason was recorded, the string was not converted, resulting in responses like "The course wasn't what I expected," which were transformed to "The course wasn't what I expected" for better visualisation.
+
+For better visualisation and accuracy, we omitted complete rows for some variables that contained NA values. They are *last_completed_step_at*, *last_completed_step*, *last_completed_week_number*, *last_completed_step_number*
+
+After transforming and cleaning enrollment data, the subset looks like:
+```{r head of leaving survey response  data- filtered}
+head(feb_2018_leaving_survey_final, 4)
+```
+
+The data preparation and data understanding are done simultaneously because the study is based on the CRISP-DM model for explanatory data analysis and the main objective is to visualise and explore the data rather than modelling it. Now that the final enrollment and survey response data is clean and filtered according to the business objective, the left join was used to merge the data from both tables. Because a left join was used after merging the data and not all of the students responded to the learning survey, the NA values were again omitted throughout the data. After merging the data, this were the columns which were created:
+
+```{r colnames of merged data  data- filtered}
+colnames(feb_2018_merged_data)
+```
+
+Because the data set for all of the intakes was quite similar, the entire data preparation and cleaning process was repeated separately for June and September intakes. Because the data set was similar for all intakes, the entire data preparation and cleaning process was repeated separately for June and September intakes. In addition, the datasets from February, June, and September were concatenated, yielding 152 observations across 11 variables. As a result, we were finished with the data understanding and data preparation and were ready to move on to the explanatory data analysis. (Ford, 2021).
 
 # References
 - Preidys, S.; Sakalauskas, L. 2010. Analysis of students’ study activities in virtual learning environments using data mining methods, Technological and Economic Development of Economy 16(1): 94–108.
 - Yu, C., Wu, J. and Liu, A., 2019. Predicting Learning Outcomes with MOOC Clickstreams. Education Sciences, [online] 9(2), p.104. Available at: <https://www.mdpi.com/2227-7102/9/2/104/htm>.
 - Yaacob, W., Nasir, S., Yaacob, W. and Sobri, N., 2019. Supervised data mining approach for predicting student performance. Indonesian Journal of Electrical Engineering and Computer Science, 16(3), p.1584.
 - Data Science Process Alliance. 2021. CRISP-DM - Data Science Process Alliance. [online] Available at: <https://www.datascience-pm.com/crisp-dm-2/> [Accessed 2 December 2021].
+- Ford, C., 2021. Data Wrangling in R: Combining, Merging and Reshaping Data. [online] Clayford.github.io. Available at: <https://clayford.github.io/dwir/dwr_05_combine_merge_rehsape_data.html> [Accessed 3 December 2021].
