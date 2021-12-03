@@ -125,7 +125,7 @@ Because the data set for all of the intakes was quite similar, the entire data p
   
 Here are some of the questions that arose while looking at the data while going through cleaned and prepared data that can help us achieve our business goal of determining when the majority of students tend to drop out of the course.
 
-- What was the course completion rate, in terms of understanding whether learners actually left the course?
+- **What was the course completion rate, in terms of understanding whether learners actually left the course?**
 
 To understand this question, the visualization was made in form of bar chart where x axis was kept as intake and y axis as percentage of completion rate.
 
@@ -135,12 +135,32 @@ knitr::include_graphics(here::here("graphs", "completion_rate_month.png"))
 
 As can be seen in Figure 2, the completion rate for each intake in 2018 was extremely low. In the months of February and June, the completion rate was only about 1%, and in September, it was only about 2%. It can be concluded that the majority of students chose to drop out of the course for various reasons. This analysis leads us to the next question: at what point did learners decide to drop out of the course?  
   
-- Which week did the most and least people drop out of the course?
+- **Which week did the most and least people drop out of the course?**
 
 Since we arrived at this conclusion based on a month-by-month analysis of completion rates, it is clear that the majority of students dropped out of the course. The only question now is when. In this step, we'll analyse the aggregate data from various intakes to gain a better understanding of the situation and see if any patterns emerge. For this step, a graph was created with the x axis representing the week number and the y axis representing the sum of learners who dropped out during that week.
 
 
+```{r plot2, fig.align = 'center', out.width = "90%", fig.cap = "Student leaving percentage week-wise", echo = FALSE}
+knitr::include_graphics(here::here("graphs", "week_leave_ratio.png"))
+```
 
+As shown in Figure 3, the drop rate is highest in Week 1, at 53%, and lowest in Week 2. In Week 3, the drop increased to 31 percent. This analysis indicates that the majority of students choose to drop out of the course during Week 1, when the entire course work is typically introduced. It is reasonable to assume that the majority of people do not want to continue with the course because they dislike the course content or the format in which it is presented. As the investigation progresses, an analysis of the reason will be carried out. However, because the percentage of people who drop out of the course in week 2 has dropped significantly, it can be assumed that those who choose to stay in the course intend to finish it. However, several students dropped out of the course by week 3, indicating that they were either no longer interested or considered the course to be too long.
+
+\newpage
+- **At what step number did the majority and least number of persons abandon the course?**
+
+Since then, it has been noted that the bulk of students dropped out of the course in week one, with the fewest dropping out in week two. As a result, going ahead, the goal is to see if there are any patterns in stepwise data. As a result, the data from the leaving survey is utilised to determine the number of students that dropped out of each phase. In figure 4, the total number of students left in each step was calculated and presented as a bar chart, with the y axis representing the number of students and the x axis representing the step numbers. To improve the accuracy of discovering the pattern among the majority of students, the step in which only one student quit the course was ignored.
+
+```{r plot3, fig.align = 'center', out.width = "90%", fig.cap = "Comparison of number of students leaving in different steps", echo = FALSE}
+knitr::include_graphics(here::here("graphs", "stepwise_completed_ratio.png"))
+```
+
+After looking at the graph, it's clear that the majority of students are leaving at step 3.20, which is the last item that deals with the course's conclusion. As a result, it's possible that a significant percentage of students completed the course but departed early to submit the survey rather than waiting until the end of the course, implying that they actually digested the course, which appears to be a positive indicator. However, the second biggest number of students abandoning the course is found in the penultimate step of week 1, which is part of the rounding up of the course given in week 1. It appears that the student tried the course for the first week but decided to drop out since they didn't like it or didn't find the curriculum relevant. There are also a large number of students who dropped out right after the first step, which is to say, "Welcome to the course session." They abandoned the course because they were either dissatisfied with the course or wasn't what the learners expected when they went through this session. There could be a variety of reasons for leaving, but the most typical interpretation appears to be that they completed the course for week 1, which served as a trial, but were unable to continue owing to some cause.
+
+\newpage
+**Business Objective 2 - An analysis of why the majority of students left the course.**  
+
+\newpage
 
 # References
 - Preidys, S.; Sakalauskas, L. 2010. Analysis of students’ study activities in virtual learning environments using data mining methods, Technological and Economic Development of Economy 16(1): 94–108.

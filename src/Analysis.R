@@ -3,6 +3,7 @@ load.project()
 
 library(dplyr)
 library(ggplot2)
+library(scales)
 #---------------------getting plot for completion rate.-------------------
 
 #Calculating the completion rate in percentage for february month
@@ -56,3 +57,47 @@ ggsave(file.path("graphs", "completion_rate_month.png"))
 
 
 #--------------------------Which week did the most and least people drop out of the course?--------------------
+(all_months_final_data)
+
+#Calculating the ratio of leaving the course week wise in percentage
+all_month_week_leave_ratio <- all_months_final_data %>%
+  group_by(last_completed_week_number) %>% # Variable to be transformed
+  count() %>%
+  ungroup() %>%
+  mutate(perc = `n` / sum(`n`)) %>%
+  arrange(perc) %>%
+  mutate(Percentage_labels = scales::percent(perc))  
+
+
+#plotting the ratio of leaving the course week wise in percentage
+ggplot(all_month_week_leave_ratio, aes(x = "", y = perc, fill = as.character(last_completed_week_number))) +
+  geom_col() +
+  geom_col(color = "black") +
+  coord_polar(theta = "y") +
+  theme_void() +
+  geom_text(aes(label = Percentage_labels),
+            position = position_stack(vjust = 0.5)) +
+  guides(fill = guide_legend(title = "Week Number")) +
+  scale_fill_brewer(palette="Spectral")
+
+ggsave(file.path("graphs", "week_leave_ratio.png"))
+
+
+#------------------------At what step number did the majority and least number of persons abandon the course?------------------
+(all_months_final_data)
+
+#Calculating the ratio of leaving the course week wise in percentage
+all_month_step_ratio <- all_months_final_data %>%
+  group_by(last_completed_step) %>% # Variable to be transformed
+  count() %>%
+  ungroup() %>% 
+  filter(n %in% (2:60) )
+
+#Creating a plot for step wise.
+ggplot(data = all_month_step_ratio, aes(x = as.character(last_completed_step), y = n,)) +
+  geom_bar(stat = "identity", fill="steelblue") + xlab("Week Number") + ylab("Number of Students")
+
+ggsave(file.path("graphs", "stepwise_completed_ratio.png"))
+
+
+
