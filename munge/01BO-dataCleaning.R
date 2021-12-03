@@ -1,7 +1,7 @@
 # Data Preparation script.
 
 #loading required libraries
-library(plyr)
+library(dplyr)
 
 #--------------------------------------February Data---------------------------------------
 #Getting csv files for february intake of 2018
@@ -64,10 +64,9 @@ feb_2018_leaving_survey_final
 #merging leaving survey response data and enrollment data
 
 #Using plyr package, we used join function to merge both the data
-feb_2018_merged_data = join(feb_2018_enrollments_final,
+feb_2018_merged_data = left_join(feb_2018_enrollments_final,
                             feb_2018_leaving_survey_final,
                             by = "learner_id",
-                            type = "left",
                             match = "all")
 
 #Omitted rows with NA values
@@ -142,10 +141,9 @@ june_2018_leaving_survey_final
 #merging leaving survey response data and enrollment data
 
 #Using plyr package, we used join function to merge both the data
-june_2018_merged_data = join(june_2018_enrollments_final,
+june_2018_merged_data = left_join(june_2018_enrollments_final,
                              june_2018_leaving_survey_final,
                              by = "learner_id",
-                             type = "left",
                              match = "all")
 
 #Omitted rows with NA values
@@ -220,7 +218,7 @@ sept_2018_leaving_survey_final
 #merging leaving survey response data and enrollment data
 
 #Using plyr package, we used join function to merge both the data
-sept_2018_merged_data = join(sept_2018_enrollments_final,
+sept_2018_merged_data = left_join(sept_2018_enrollments_final,
                              sept_2018_leaving_survey_final,
                              by = "learner_id",
                              type = "left",
