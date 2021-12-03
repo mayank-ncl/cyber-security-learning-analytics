@@ -62,6 +62,7 @@ Learners who enrolled in FutureLearn's cyber security course had their data util
 | 8 | last_completed_step     | Last completed step number |
 | 9 | last_completed_step_week_no     | The week number when learner completed the last step |
 |10 | last_completed_step_no     | The step number when learner completed the last step |
+|11 | correct     | Boolean attribute whether the quiz response was correct or not |
 
 
 # Analysis  
@@ -104,7 +105,7 @@ head(feb_2018_leaving_survey, 4)
 There are 173 observations of 8 variables in the enrollments data, as can be seen. For this data, the variables were cleaned and prepared as follows.  
 
 - **id**: This variable is for storing unique ID while recording leaving survey, however this will be excluded from the filtered data
-- **response_id**: Because there are no null values in this variable, no cleaning or inclusion/exclusion was performed. However, this variable was used for joining enrollment and leaving survey response data
+- **learner_id**: Because there are no null values in this variable, no cleaning or inclusion/exclusion was performed. However, this variable was used for joining enrollment and leaving survey response data
 - **left at**: Because the values are timestamps of when the student left the course and there are no NA or null values, no cleaning or inclusion/exclusion was necessary.
 - **leaving reason**: This variable contains the reasons for the learner's withdrawal from the course. For the purposes of accurate analysis, we will omit the complete record for some NA values. Furthermore, when the reason was recorded, the string was not converted, resulting in responses like "The course wasn't what I expected," which were transformed to "The course wasn't what I expected" for better visualisation.
 
@@ -160,14 +161,92 @@ After looking at the graph, it's clear that the majority of students are leaving
 \newpage
 **Business Objective 2 - An analysis of why the majority of students left the course.**  
 
-When the majority of students abandon the course halfway through the preceding business objective and cycle of CRISP-DM, the explanatory data analysis was finished and the conclusion was formed. In addition, data analysis based on learner patterns revealed the most likely reasons. The goal of this objective is to figure out what the main reasons are for students dropping out of classes. It can assist professors and course administrators in improving course work and processes in order to promote student engagement and enrollment.
+When the majority of students abandon the course halfway through the preceding business objective and cycle of CRISP-DM, the explanatory data analysis was finished and the conclusion was formed. In addition, data analysis based on learner patterns revealed the most likely reasons. The goal of this objective is to figure out what the main reasons are for students dropping out of classes. It can assist professors and course administrators in improving course work and processes in order to promote student engagement and enrollment. A similar CRISP-DM process was used for this business aim as it was for the first. However, the data set that will be used for this data analysis is the same as that which was cleaned and prepared for the previous business purpose as below.
 
+```{r colnames of merged data  data- b02 filtered}
+colnames(feb_2018_merged_data)
+```
+
+There is one additional data set, however, that requires comprehension and preparation in order to help the data analysis. It's a collection of quiz responses. The purpose of this data set was to better understand the learners' performance and see whether there was any pattern or correlation with the feedback.
+
+**Question Response Data**
+
+In the same way that the data from three intakes for the year 2018 is used, the question response data is used in the same way. For February intake, there are 18752 observations of 10 variables. The data looks something like below:
+
+
+```{r}
+head(feb_2018_question_response, 4)
+```
+
+Since our main focus in this business objective is to find the reason behind leaving the course and this data might not seem to be relevant, however, this data is going to be as supporting factor. So, the variables which are required are just 2 which are as follows.  
+
+- **learner_id**: Because there are no null values in this variable, no cleaning or inclusion/exclusion was performed. However, this variable was used for joining enrollment and leaving survey response data
+- **correct**: This variable is for storing whether the quiz response given by learner is correct or not. It is a boolean variable and no NA or null values are present hence no omitting required for this data set.
+
+Rest of the variables will be removed from the data set. This data set will be merged in the same way that the business objective was merged. The information from three intakes will be combined and the percentage was calculated for comparison. The clean and merged data looks like.
+
+```{r}
+head(all_month_res_perf, 2)
+```
+
+Here are some of the questions that arose while looking at the data while going through cleaned and prepared data that can help us achieve our business goal of determining why the majority of students tend to drop out of the course.
+
+- **Can course difficulty be a factor in students dropping out?**
+
+Based on the trend of learners abandoning the course in week 1, it's possible that either the learners were dissatisfied with the course or the difficulty level was either too easy or too challenging, causing the learner to exit the course. Because we have data on quiz response for all of the intakes, the goal of this study is to evaluate the data to see if difficulty was a factor. The average is calculated for all intakes where students either answered properly or incorrectly to the quiz question that is part of the course work in this question.  
+  
+To visualise this, a dogde style bar plot was used, with the x axis representing different intakes and the y axis representing the percentage of students that gave accurate and incorrect responses.
+
+```{r plot7, fig.align = 'center', out.width = "90%", fig.cap = "Comparison of leaving reason survey data", echo = FALSE}
+knitr::include_graphics(here::here("graphs", "quiz_response_ratio.png"))
+```
+
+
+As shown in Figure 5, the performance of students has been very consistent with each intake. When comparing the results to those from traditional classrooms, we can conclude that the students who enrolled in this course and attempted the quiz questions did not do particularly well. On average, only 57 percent of students are able to provide correct answers, but 43 percent provide incorrect responses. Given that the number of students enrolled in online courses is higher than in traditional classes, this ratio of incorrect answers suggests that either students do not understand the course material or it is becoming difficult to cover it.  
+  
+As a result of this question, there's a good chance that the course's difficulty level is one of the reasons why students drop out. The reasons for leaving the survey are analysed in the next question, which can help us better understand this relationship.
+
+- **What was the reason for dropping out of the class?**
+
+The data set included the reasons for abandoning the course, as well as the step and week number at which the student left. When a student chooses to leave, the student is requested to complete a survey in which he or she can select one of seven possible responses.The categorical responses were as follows.  
+  
+- I don't have enough time
+- I prefer not to say
+- The course required more time than I realised
+- The course was too hard
+- The course wasn't what I expected
+- The course won't help me reach my goals
+- Other
+
+To better comprehend this, the data set was presented as a pie chart, with the percentage of students giving categorical values as reasons as illustrated in Figure 6.
+
+```{r plot4, fig.align = 'center', out.width="90%", fig.cap = "Comparison of quiz response of students", echo = FALSE}
+knitr::include_graphics(here::here("graphs", "leaving_reason_pie.png"))
+```
+
+As can be seen in Figure 6, the two justifications "Other" and "I prefer not to say" were eliminated because they didn't specify the particular reason. However, it can be deduced from the graph that the length of the course was the primary cause for students dropping out. The percentages on the pie chart are calculated by taking the average of all three intakes. Given that most students drop out of the course in Week 1, as determined by the first business objective, it is reasonable to suppose that students review the future course work in the introduction lectures and conclude that the course is too long for them. As a result, they decide to drop out of the class. Adding to this, 14% of students said the course needed more work than they expected, which is quite similar and points to the length of course work as a problem.  
+  
+As previously observed in previous analyses of course difficulty, and based on the leaving reason of the course being difficult, it can be concluded that there is a positive correlation between difficulty and the ratio of students leaving the course. This course appears to be overly difficult, according to the second most prevalent explanation. Unfortunately, another majority appears to find the course to be either extremely difficult or impossible to complete, as seen by their abandonment of the course halfway through. Furthermore, some students felt that the course did not live up to their expectations. The general conclusion of this analysis is that the coursework needs to be enhanced, with the syllabus being kept brief, crisp, and relevant and easy to understand so that learners can engage more in the course and the participation rate rises.
 
 \newpage
+# Conclusion:
 
+MOOCs, which are currently popular and have a significant role in COVID 19, have demonstrated that online courses, in addition to traditional classrooms, are an effective way of learning. Traditional classrooms and online learning, on the other hand, each have their own set of benefits and drawbacks. The goal of this research was to decipher the data provided by Futurelearn, a MOOC platform, in order to gain insight into students' engagement and performance in online learning.The study was carried out utilizing CRISP-DM methodology with the help of enrollment, leaving survey response and quiz response data.  
+  
+Initially, the goal is to locate the problem in the data collection in order to establish the appropriate business aim. There was data in a set of seven where the runs were done on various intakes from various years. The enrollments were the most compelling reason to begin the analysis. Each intake and year, there was a considerable drop in enrollments. Furthermore, it was discovered that the majority of those who enrolled in the course chose to drop out, resulting in a relatively low completion rate. Before boosting enrollments, it's important to understand why students choose to drop out midway through a course despite the fact that they could study something from home. As a result, the first questions that came to mind were when and why? The first inquiry was when did the majority of the students drop out of the course after enrolling. The reason for leaving the course was the second question.  
+  
+This study attempted to understand the completion rate, which turned out to be quite low, averaging approximately 1.5 percent for three intakes, while going through the analysis of the first question, which is when the majority of students abandoned the course. We studied the number of students who left the course in each week because we have the data for learners leaving week by week. The highest number of dropouts was seen in week one. It was deduced that the student used week 1 as a trial week and was likely dissatisfied with the course content for a variety of reasons. Those who choose to continue after week 1 had a considerable decrease in dropout in week 2 and a slight increase in week 3. However, because week 3 was the last week of the course, it was presumed that the majority of students had completed it. To look into it further, we looked at the student dropouts one by one, and the assumption week 3 appears to be correct. The majority of dropouts occurred in the last step, which shows that the learner completed all coursework but elected to quit the course with a survey rather than fully finishing it. Another finding was that the majority of dropouts in week one occurred in the final step of that week. Given a result, the presumption that the learner is dissatisfied with the course appears to be correct, as the final step in week 1 was to wrap up the introduction.  
+  
+The next big concern was why so many students dropped out of the course. Is difficulty a role in dropping out of a course before moving on to the next question? Since the data for quiz response was available, it was determined that more than 40% of students were providing wrong answers, which is not a good performance. There's a potential the students dropped out because the course was too challenging for them, but that's just a guess. Moving forward, what were your reasons for dropping out of the class? Because there was data from the departing survey responses, an analysis was conducted, and it was discovered that the majority of students found the course to be too long, although the difficulty of the course was the second most common reason for leaving. Because we made a guess, it appears to be correct. Following this explanatory data analysis, it can be concluded that in order to enhance the number of enrollments as well as the completion rate, the courses should be maintained brief, crisp, and easy to grasp.
+  
+\newpage
 # References
 - Preidys, S.; Sakalauskas, L. 2010. Analysis of students’ study activities in virtual learning environments using data mining methods, Technological and Economic Development of Economy 16(1): 94–108.
 - Yu, C., Wu, J. and Liu, A., 2019. Predicting Learning Outcomes with MOOC Clickstreams. Education Sciences, [online] 9(2), p.104. Available at: <https://www.mdpi.com/2227-7102/9/2/104/htm>.
 - Yaacob, W., Nasir, S., Yaacob, W. and Sobri, N., 2019. Supervised data mining approach for predicting student performance. Indonesian Journal of Electrical Engineering and Computer Science, 16(3), p.1584.
 - Data Science Process Alliance. 2021. CRISP-DM - Data Science Process Alliance. [online] Available at: <https://www.datascience-pm.com/crisp-dm-2/> [Accessed 2 December 2021].
 - Ford, C., 2021. Data Wrangling in R: Combining, Merging and Reshaping Data. [online] Clayford.github.io. Available at: <https://clayford.github.io/dwir/dwr_05_combine_merge_rehsape_data.html> [Accessed 3 December 2021].
+- Brillinger, D., Preisler, H., Ager, A. and Kie, J., 2004. An exploratory data analysis (EDA) of the paths of moving animals. Journal of Statistical Planning and Inference, [online] 122(1-2), pp.43-63. Available at: <https://www.sciencedirect.com/science/article/abs/pii/S0378375803002404> [Accessed 3 December 2021].
+- Reproducible data science techniques in actuarial work. 2021. Exercise 1. [online] Available at: <https://philipdarke.com/reproducible-actuarial-work/exercise1> [Accessed 3 December 2021].
+- Taylor & Francis. 2021. An overview of learning analytics. [online] Available at: <https://doi.org/10.1080/13562517.2013.827653> [Accessed 3 December 2021].
+- Chatti, M., Dyckhoff, A., Schroeder, U. and Thüs, H., 2012. A reference model for learning analytics. International Journal of Technology Enhanced Learning, 4(5/6), p.318.

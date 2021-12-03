@@ -74,6 +74,13 @@ feb_2018_merged_data = na.omit(feb_2018_merged_data)
 
 feb_2018_merged_data$intake = "February 2018"
 
+#Preparing the result data for all the students
+feb_2018_question_response = data.frame(feb_2018_csv[[4]])
+
+#Extracting just 2 columns
+feb_2018_question_response = feb_2018_question_response[,c("learner_id", "correct")]
+
+
 
 colnames(feb_2018_merged_data)
 
@@ -155,6 +162,12 @@ june_2018_merged_data$intake = "June 2018"
 
 colnames(june_2018_merged_data)
 
+#Preparing the result data for all the students
+june_2018_question_response = data.frame(june_2018_csv[[4]])
+
+#Extracting just 2 columns
+june_2018_question_response = june_2018_question_response[,c("learner_id", "correct")]
+
 
 #----------------------------------Sept Data ---------------------------------------------
 
@@ -229,6 +242,12 @@ sept_2018_merged_data = na.omit(sept_2018_merged_data)
 sept_2018_merged_data$intake = "September 2018"
 
 colnames(sept_2018_merged_data)
+
+#Preparing the result data for all the students
+sept_2018_question_response = data.frame(sept_2018_csv[[4]])
+
+#Extracting just 2 columns
+sept_2018_question_response = sept_2018_question_response[,c("learner_id", "correct")]
 
 #------------------------------------Bringing All months data together ------------------------------------
 
