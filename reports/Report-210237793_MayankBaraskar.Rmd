@@ -197,7 +197,7 @@ Based on the trend of learners abandoning the course in week 1, it's possible th
   
 To visualise this, a dogde style bar plot was used, with the x axis representing different intakes and the y axis representing the percentage of students that gave accurate and incorrect responses.
 
-```{r plot7, fig.align = 'center', out.width = "90%", fig.cap = "Comparison of leaving reason survey data", echo = FALSE}
+```{r plot7, fig.align = 'center', out.width = "90%", fig.cap = "Comparison of quiz reason survey data", echo = FALSE}
 knitr::include_graphics(here::here("graphs", "quiz_response_ratio.png"))
 ```
 
@@ -220,7 +220,7 @@ The data set included the reasons for abandoning the course, as well as the step
 
 To better comprehend this, the data set was presented as a pie chart, with the percentage of students giving categorical values as reasons as illustrated in Figure 6.
 
-```{r plot4, fig.align = 'center', out.width="90%", fig.cap = "Comparison of quiz response of students", echo = FALSE}
+```{r plot4, fig.align = 'center', out.width="90%", fig.cap = "Comparison of leave response of students", echo = FALSE}
 knitr::include_graphics(here::here("graphs", "leaving_reason_pie.png"))
 ```
 

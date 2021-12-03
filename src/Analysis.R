@@ -166,7 +166,7 @@ ggsave(file.path("graphs", "quiz_response_ratio.png"))
 
 
 
-all_month_leave_reason_ratio <- all_months_final_data %>%
+all_month_leave_reason_ratio = all_months_final_data %>%
   filter(leaving_reason != "I prefer not to say" & leaving_reason != "Other") %>%
   group_by(leaving_reason) %>% # Variable to be transformed
   count() %>%
@@ -184,7 +184,7 @@ ggplot(all_month_leave_reason_ratio, aes(x = "", y = perc, fill = leaving_reason
   theme_void() +
   geom_text(aes(label = Percentage_labels),
             position = position_stack(vjust = 0.5)) +
-  guides(fill = guide_legend(title = "Week Number")) +
+  guides(fill = guide_legend(title = "Leaving Reason")) +
   scale_fill_brewer(palette="Spectral")
 
 ggsave(file.path("graphs", "leaving_reason_pie.png"))
