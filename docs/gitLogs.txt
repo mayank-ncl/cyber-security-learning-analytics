@@ -1,0 +1,83 @@
+commit e13b0a944b0abb8a9eb28b70bbc095a3ba342481
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 12:01:20 2021 +0000
+
+    feat: adding summative assignment
+
+commit 9918a3cccc257fc3ea275449ef2ee7b5cce0ad71
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 09:46:46 2021 +0000
+
+    feat: finalizing report
+
+commit 34539b0eb74f6c46b904b8ea4e4f15b9093e0000
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 06:58:26 2021 +0000
+
+    fix: source of analysis code
+
+commit 4d7bbf4266dc2e408ddcf70d92556a041ec53fcd
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 06:38:53 2021 +0000
+
+    feat: completing business objective 1
+
+commit 0fe234a8331da59a142775241f24f9cc794619db
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 03:46:00 2021 +0000
+
+    feat: adding graph for completion rate
+
+commit 0d70cca5d2680072ac4b6d7788423806d47d823b
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Dec 3 01:01:05 2021 +0000
+
+    feat: adding data cleaning part for business objective 1
+
+commit b98b53e4399d0cfab51c71405fc4613d8afc13fa
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Thu Dec 2 17:48:45 2021 +0000
+
+    feat: adding 1st business objective
+
+commit 2891f3ff0d56dd1782faa98bac9a195d33c85a51
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Thu Dec 2 14:13:57 2021 +0000
+
+    feat: adding data description
+
+commit a1f0cc822f35d89c5a15ce1f5a1fe1b3e59d316d
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Thu Dec 2 13:15:29 2021 +0000
+
+    fix: making loading libraries TRUE
+
+commit b12d63438c08647f9624a151804ffb76fc3d12b5
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Thu Dec 2 13:15:03 2021 +0000
+
+    feat: adding reasearch method in report
+
+commit 2f66f10f2ea198036dea2a82bcd33476755c41e1
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Wed Dec 1 15:55:06 2021 +0000
+
+    feat: adding abstract
+
+commit 07889db7df3254c2346c0c320c7149ec7be7ec22
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Tue Nov 30 13:51:16 2021 +0000
+
+    feat: removing default rmd content
+
+commit 9281f9591dc5e96e3a9b0bdd48184473a62d7a00
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Mon Nov 29 13:28:18 2021 +0000
+
+    feat: imported data and setting up Markdown report
+
+commit 8a95d940fe94e9c0f4bedaa61089a8a139cfe964
+Author: Mayank Baraskar <m.p.baraskar2@newcastle.ac.uk>
+Date:   Fri Nov 26 19:12:08 2021 +0000
+
+    feat: initial commit of setting up project
